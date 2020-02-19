@@ -1,0 +1,43 @@
+AC_INIT(djinni, 2.2.4, rjh@sixdemonbag.org)
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_HEADERS(config.h)
+AM_INIT_AUTOMAKE
+AC_PROG_CXX
+AC_PROG_RANLIB
+AC_PROG_LIBTOOL
+AC_PYTHON_DEVEL(>="2.3", [], [AC_MSG_ERROR([
+  --------------------------------------------------------------------------
+  I'm sorry, but I couldn't find Python.
+
+  Check to make sure Python is installed, and then try again.  You may want
+  to try using PYTHON_VERSION on the configure command line.
+  -------------------------------------------------------------------------- 
+])])
+AM_PATH_PYTHON
+AC_PROG_SWIG(1.3.20, [], [AC_MSG_ERROR([
+  --------------------------------------------------------------------------
+  I'm sorry, but I couldn't find SWIG 1.3.20 or later.
+
+  Check to make sure SWIG is installed, and then try again.
+  --------------------------------------------------------------------------
+])])
+SWIG_ENABLE_CXX
+SWIG_PYTHON
+
+AC_CHECK_FUNCS([floor], [have_floor=y], [have_floor=n])
+AC_MSG_CHECKING([if math functions link without -lm])
+if test "x$have_floor" = xy; then 
+AC_MSG_RESULT([yes])
+else
+AC_MSG_RESULT([no])
+LIBS="$LIBS -lm"
+fi
+AX_BOOST_BASE([1.32.0], [], [AC_MSG_ERROR([
+  --------------------------------------------------------------------------
+  I'm sorry, but I couldn't find Boost.
+  
+  Check to make sure Boost is installed, and then try again.  This time, add
+  --with-boost=/path/to/boost to the configure command line.
+  --------------------------------------------------------------------------
+])])
+AC_OUTPUT(Makefile src/Makefile)
