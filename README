@@ -1,6 +1,19 @@
+Djinni: A Templatized C++ Framework with Python Bindings for Heuristic Search
+=============================================================================
+
 Djinni 2.2 is a project-in-progress by the Henry B. Tippie College of
 Business at the University of Iowa, with additional help from computer 
 science geeks in the Department of Computer Science.
+
+Djinni is a framework for implementing heuristic search algorithms.
+The core elements are coded in C++ and Python bindings are provided to simplify the user interface.
+The current version of Djinni implements compressed annealing (Ohlmann et al., 2004),
+a generalization of the well-known simulated annealing algorithm, and includes code used by Ohlmann and Thomas (2007)
+to solve the traveling salesman problem with time windows (TSPTW).
+The Djinni framework uses C++ templates to separate code into three parts:
+a heuristic search algorithm, a problem model, and problem data. 
+Thus, it is straightforward to apply compressed or simulated annealing to problems other than the TSPTW.
+Furthermore, it is not difficult to apply different heuristic search algorithms to the same problem.
 
 The goal of Djinni is to provide a library for constrained
 combinatorial optimization which is:
@@ -44,7 +57,21 @@ will display output to stdout, whereas pygtk-salesman will give a
 graphical representation of the route.  pygtk-salesman requires the
 PyGTK toolkit be installed.
 
+Djinni's primary author is Robert Hansen, assisted in initial stages by
+Jeff Ohlmann, Barry Thomas, and Tristan Thiede.
+Justin Goodson assisted with some fine tuning and is the contact for Djinni.
+
 Thank you for downloading Djinni 2.2, and we hope that it's helpful to
 you in your searches!
 
     -- Rob Hansen, writing for the authors
+
+
+References:
+- Ohlmann, J., J. Bean, and S. Henderson (2004).
+  Convergence in probability of compressed annealing.
+  Mathematics of Operations Research, vol 29, 837-860.
+- Ohlmann, J. and B. Thomas (2007).
+  A compressed annealing approach to the traveling salesman problem with time windows.
+  INFORMS Journal on Computing, vol 19, 80-90.
+
